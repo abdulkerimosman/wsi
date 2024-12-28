@@ -1,3 +1,28 @@
+async function fetchSinir(query) {
+  try {
+    const response = await fetch('http://localhost:5500/api/home' + query);
+    const data = await response.json();
+
+    const number = data.data[0]['COUNT(*)'];
+    console.log('Leeededed', number);
+
+    
+    const inputField = document.querySelector('#number_input'); // Correct selector
+    const inputedNumber = parseFloat(inputField.value);
+
+    const result = (number * inputedNumber) / 100;
+      console.log('Calculated Result:', result);
+      return result
+
+    
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+
+
+
 async function fetchDataKampanyaZaman(query,tip) {
   try {
     const response = await fetch('http://localhost:5500/api/home'+query);
@@ -27,6 +52,32 @@ async function fetchDataKampanyaZaman(query,tip) {
 
     const labels = chartData.map(item => item.basvuru_tarihi.split('T')[0]);
     const quantity = chartData.map(item => item.adet);
+
+    const sinirValue = await fetchSinir('?queryType=sinir');
+    if (sinirValue === null) {
+      console.error("Failed to fetch sinir value");
+      return;
+    }
+
+    const horizontalLinePlugin = {
+      id: 'horizontalLine',
+      afterDraw: (chart) => {
+        const { ctx, chartArea: { top, left, right, bottom }, scales: { y } } = chart;
+
+        // Calculate the y-coordinate for the horizontal line
+        const yCoordinate = y.getPixelForValue(sinirValue);
+
+        // Draw the line
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(left, yCoordinate);
+        ctx.lineTo(right, yCoordinate);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'red';
+        ctx.stroke();
+        ctx.restore();
+      }
+    };
 
     new Chart(ctx, {
       type: 'line',
@@ -83,7 +134,8 @@ async function fetchDataKampanyaZaman(query,tip) {
         animation: {
           duration: 1000
         }
-      }
+      },
+      plugins: [horizontalLinePlugin]
     });
   } catch (error) {
     console.error("Error fetching data:",error)

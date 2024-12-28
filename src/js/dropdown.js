@@ -1,4 +1,4 @@
-async function dropDown(query, tip) {
+async function dropDown(query, tip, dropdownone, dropdowntwo) {
   try {
     const response = await fetch('http://localhost:5500/api/home' + query);
     const data = await response.json(); 
@@ -18,7 +18,7 @@ async function dropDown(query, tip) {
     });
 
     // Clear the existing options to avoid appending to previous ones
-    const dropdown = tip === 'bolum_ad' ? document.querySelector('#dropdown1_1') : document.querySelector('#dropdown2_2');
+    const dropdown = tip === 'bolum_ad' ? document.querySelector(dropdownone) : document.querySelector(dropdowntwo);
     dropdown.innerHTML = ''; // Clear current options
 
     // Append new options to the correct dropdown

@@ -36,6 +36,7 @@
     "fastq": "^1.17.1",
     "fill-range": "^7.1.1",
     "foreground-child": "^3.3.0",
+    "fs": "^0.0.1-security",
     "function-bind": "^1.1.2",
     "glob": "^10.4.5",
     "glob-parent": "^6.0.2",
@@ -111,4 +112,4 @@
   },
   "author": "Abdulkerim Issa Osman",
   "license": "ISC"
-} 
+}

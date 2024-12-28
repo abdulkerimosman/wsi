@@ -98,4 +98,4 @@
 
   
 })
-.catch(error=> console.error('Okul veri çekmede hata')); */ 
+.catch(error=> console.error('Okul veri çekmede hata')); */

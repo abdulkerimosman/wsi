@@ -78,6 +78,9 @@ router.get('/home', async (req, res) => {
       case 'bolum_ad':
         sorgu = 'CALL bolum_ad()';
         break;
+      case 'sinir':
+        sorgu = 'SELECT COUNT(*) FROM basvurular';
+        break;
       default:
         console.error(`Invalid queryType received: ${queryType}`);
         return res.status(400).json({ message: `${queryType} is not a valid queryType` });

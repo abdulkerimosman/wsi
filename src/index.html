@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <title>Home</title>
 </head>
-<body class="font-light text-sm">
+<body class="font-light text-sm bg-neutral-50">
   <!--- header -->
   <div class="flex justify-between mx-3"> 
     <div class="flex align-middle items-center gap-1">
@@ -28,8 +28,8 @@
   
   <div class="grid grid-cols-3 grid-rows-2 gap-2 h-[500px] w-[1200px] m-2 mt-4">
     <!-- 1st part-->    
-    <div class="p-3 grid grid-cols-1  grid-rows-[10px,1fr] h-fullgap-1 ">
-      <div class="flex justify-between gap-3 items-center"> 
+    <div class=" grid grid-cols-1  grid-rows-[10px,1fr] h-fullgap-1 p-2 shadow-md  rounded-md  bg-white">
+      <div class="flex justify-between gap-3 items-start"> 
         <p>Potansiyel Şubeler</p>
         <div>
           <label for="checkbox1_1">İlçe <input type="checkbox" id="checkbox1_1" checked> </label> 
@@ -40,7 +40,7 @@
     </div>
 
     <!-- 2nd part-->
-    <div class="flex flex-col justify-between " id="div2">     
+    <div class="flex flex-col justify-between p-2 shadow-md  rounded-md  bg-white" id="div2">     
       <div class="flex justify-between gap-3 items-start"> 
         <p>Doluluk Oranı</p>
         <div class="flex flex-col items-end">
@@ -62,43 +62,7 @@
     </div>
 
     <!-- 3rd part-->
-    
-    <div class="flex flex-col h-[250px] w-full">
-      <div class="flex justify-center items-start gap-2">
-        <label for="checkbox3_2">Rakipler <input type="checkbox" id="checkbox3_2" checked> </label> 
-        <label for="checkbox3_3">Şubelerim <input type="checkbox" id="checkbox3_3" checked> </label> 
-        <label for="checkbox3_4">Potansiyel Şubeler <input type="checkbox" id="checkbox3_4" checked> </label> 
-      </div>
-      <div class="flex-1 w-full rounded-lg" id="map"></div>
-    </div>     
-    
-         
-    
-    <!-- 4th part-->
-    <div class="flex flex-col justify-between" id="div4">     
-      <div class="flex justify-between gap-3 items-start"> 
-        <p>Kampanya Zamanla</p>
-        <input class="border w-16" type="text">
-        <div class="flex flex-col items-end">
-          <div>
-            <label for="checkbox4_1">Hepsi <input type="checkbox" id="checkbox4_1" checked> </label> 
-            <label for="checkbox4_2">Bireysel <input type="checkbox" id="checkbox4_2"> </label>
-          </div>
-           
-          <!--<select  name="doluluk_orani" id="dropdown1_1">-->
-              
-          </select>
-          <select  name="kampanya_zamanla" id="dropdown4_2" class="hidden">  
-      
-          </select>
-        </div>
-               
-      </div>
-      <div class="h-48" id="graph4_1"></div>
-    </div>
-
-    <!-- 5th part-->
-    <div class="flex flex-col justify-between" id="div5">     
+    <div class="flex flex-col justify-between p-2 shadow-md  rounded-md bg-white" id="div5">     
       <div class="flex justify-between gap-3 items-start"> 
         <p>Kampanya ile okuyan Öğrenciler</p>
         <div class="flex flex-col items-end">
@@ -118,9 +82,75 @@
       </div>
       <div class="h-48" id="graph5_1"></div>
     </div>
+     
+    
+         
+    
+    <!-- 4th part-->
+    
+    <div class="flex flex-col h-[250px] w-full p-2 shadow-md  rounded-md bg-white">
+      <div class="flex justify-center items-start gap-2">
+        <label for="checkbox3_2">Rakipler <input type="checkbox" id="checkbox3_2" checked> </label> 
+        <label for="checkbox3_3">Şubelerim <input type="checkbox" id="checkbox3_3" checked> </label> 
+        <label for="checkbox3_4">Potansiyel Şubeler <input type="checkbox" id="checkbox3_4" checked> </label> 
+      </div>
+      <div class="flex-1 w-full rounded-lg" id="map"></div>
+    </div> 
+
+    <!-- 5th part-->
+    <div class="flex flex-col justify-between p-2 shadow-md  rounded-md  bg-white" id="div6">     
+      <div class="flex justify-between gap-3 items-start"> 
+        <p>Doluluk Zamanla</p>
+        <div class="flex items-start" id="zaman_input_div">
+          <input class="border w-7" type="type" id="zaman_number_input">
+          <button class="bg-slate-100" id="zaman_input_button"><img src="img/left-arrow.png" class="rotate-180 w-[22px] " id="oran_input" alt=""></button>
+        </div>
+        <div class="flex flex-col items-end">
+          <!--<div>
+            <label for="checkbox6_1">Bölüm <input type="checkbox" id="checkbox6_1" checked> </label> 
+            <label for="checkbox6_2">Şube <input type="checkbox" id="checkbox6_2"> </label>
+          </div>-->
+          
+          <!--<select  name="doluluk_orani" id="dropdown6_1">
+              
+          </select>-->
+          <select class="w-28"  name="doluluk_orani" id="dropdown6_2" >  
+
+          </select>
+        </div>
+        
+      </div>
+      <div class="w-full" id="graph6_1"></div>
+      <p id="text_deneme"></p>
+    </div>
+    
+    
 
     <!-- 6th part-->
-    <div class="bg-red-600">asd</div>
+    <div class="flex flex-col justify-between p-2 shadow-md  rounded-md bg-white" id="div4">     
+      <div class="flex justify-between gap-3 items-start"> 
+        <p>Kampanya Zamanla</p>
+        <div class="flex items-start hidden" id="oran_input_div">
+          <input class="border w-7" type="type" id="number_input">
+          <button class="bg-slate-100" id="oran_input_button"><img src="img/left-arrow.png" class="rotate-180 w-[22px] " id="oran_input" alt=""></button>
+        </div>
+        <div class="flex flex-col items-end">
+          <div>
+            <label for="checkbox4_1">Hepsi <input type="checkbox" id="checkbox4_1" checked> </label> 
+            <label for="checkbox4_2">Bireysel <input type="checkbox" id="checkbox4_2"> </label>
+          </div>
+           
+          <!--<select  name="doluluk_orani" id="dropdown1_1">-->
+              
+          </select>
+          <select  name="kampanya_zamanla" id="dropdown4_2" class="hidden">  
+      
+          </select>
+        </div>
+               
+      </div>
+      <div class="h-48" id="graph4_1"></div>
+    </div>   
     
   </div>
 
@@ -136,5 +166,7 @@
 <script src="js/map.js"></script>
 <script src="js/kampanya.js"></script>
 <script src="js/kampanya_orani.js"></script>
+<script src="js/doluluk_zaman.js"></script>
 <script src="js/home.js"></script>
+<script src="js/details.js"></script>
 </html> 
