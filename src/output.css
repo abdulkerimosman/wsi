@@ -617,12 +617,20 @@ video {
   margin-right: 1rem;
 }
 
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
 }
 
 .flex {
@@ -661,12 +669,16 @@ video {
   height: 1.5rem;
 }
 
-.h-\[250px\] {
-  height: 250px;
+.h-\[260px\] {
+  height: 260px;
 }
 
 .h-\[500px\] {
   height: 500px;
+}
+
+.w-1 {
+  width: 0.25rem;
 }
 
 .w-20 {
@@ -711,10 +723,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-16 {
-  width: 4rem;
 }
 
 .max-w-xs {

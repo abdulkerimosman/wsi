@@ -1,21 +1,33 @@
-fetch('./python/data.json')
-.then(response => response.json())
-.then(data => {
+Promise.all([
+  fetch('./python/data.json').then(response => response.json()), // Fetch JSON file and parse
+  fetch('http://localhost:5500/api/home?queryType=doluluk_orani_subeler').then(response => response.json()) // Fetch API data and parse
+])
+.then(([localData, apiData]) => {
   const dateColumns = [
-      '2021-01', '2021-04', '2021-07', '2021-10',
-      '2022-01', '2022-04', '2022-07', '2022-10',
-      '2023-01', '2023-04', '2023-07', '2023-10', 
-      '2024-01', '2024-04', '2024-07', '2024-10',
-      '2025-01', '2025-04', '2025-07', '2025-10'
+    '2021-01', '2021-04', '2021-07', '2021-10',
+    '2022-01', '2022-04', '2022-07', '2022-10',
+    '2023-01', '2023-04', '2023-07', '2023-10', 
+    '2024-01', '2024-04', '2024-07', '2024-10',
+    '2025-01', '2025-04', '2025-07', '2025-10'
   ];
 
-  const result = {};
-  console.log('My Data:',data)
+  const result = {};  
+  console.log('Local Data:', localData);
+
+  let limit = apiData.data[0];
+  console.log('API Data:', limit[0]);
+
+  const limit_data = {};
+  
+  for (let i = 0; i < limit.length; i++) {
+    limit_data[limit[i]['sube_ad']] = limit[i]['toplam_kapasite'];
+  }
+
+  console.log('LimitData', limit_data);
 
   // Process the data
-  data.forEach(entry => {
+  localData.forEach(entry => {
     Object.entries(entry).forEach(([key, value]) => {
-      //const formattedKey = key.toLowerCase().replace(/\s+/g, '_');
       if (!result[key]) {
         result[key] = [];
       }
@@ -37,92 +49,161 @@ fetch('./python/data.json')
   chartContainer6.innerHTML = ''; // Clear previous content
   chartContainer6.appendChild(canvas6);
 
-  // Function to draw chart for a specific sube
-  // Global variable to store the chart instance
   let myChart;
 
+  // Function to draw chart for a specific sube
   const drawChart = (subeKey) => {
-  const ctx = canvas6.getContext('2d');
-// Define colors for 2025 and other years
-const defaultColor = 'rgba(54, 162, 235, 1)'; // Blue
-const specialColor = 'rgba(255, 99, 132, 1)'; // Pink
+    const ctx = canvas6.getContext('2d');
 
-const chartData = {
-  labels: dateColumns,
-  datasets: [{
-    label: subeKey,
-    data: result[subeKey],
-    borderWidth: 2,
-    pointBackgroundColor: dateColumns.map(date => 
-      date.startsWith('2025') ? specialColor : defaultColor
-    ), // Dynamic point colors
-    pointBorderColor: dateColumns.map(date => 
-      date.startsWith('2025') ? specialColor : defaultColor
-    ), // Dynamic point border colors
-    segment: {
-      borderColor: (ctx) => {
-        const index = ctx.p0DataIndex; // Start index of the segment
-        const currentDate = dateColumns[index];
-        return currentDate.startsWith('2025') ? specialColor : defaultColor;
-      }
-    },
-  }]
-};
+    const defaultColor = 'rgba(54, 162, 235, 1)'; // Blue
+    const specialColor = 'rgba(255, 99, 132, 1)'; // Pink
 
+    // Get max capacity for the selected school
+    const maxCapacity = limit_data[subeKey];
 
-  // Destroy the existing chart instance if it exists
-  if (myChart) {
+    // Define chart data
+    const chartData = {
+      labels: dateColumns,
+      datasets: [{
+        label: subeKey,
+        data: result[subeKey],
+        borderWidth: 2,
+        pointBackgroundColor: dateColumns.map(date => 
+          date.startsWith('2025') ? specialColor : defaultColor
+        ),
+        pointBorderColor: dateColumns.map(date => 
+          date.startsWith('2025') ? specialColor : defaultColor
+        ),
+        segment: {
+          borderColor: (ctx) => {
+            const index = ctx.p0DataIndex;
+            const currentDate = dateColumns[index];
+            return currentDate.startsWith('2025') ? specialColor : defaultColor;
+          }
+        },
+      }]
+    };
+
+    if (myChart) {
       myChart.destroy();
-  }
+    }
 
-  // Create a new chart instance
-  myChart = new Chart(ctx, {
-      type: 'line', // Change to 'line' if needed
+    // Custom plugin to draw horizontal lines
+    const horizontalLinePlugin = {
+      id: 'horizontalLine',
+      beforeDraw: (chart) => {
+        const yScale = chart.scales.y;
+        const ctx = chart.ctx;
+
+        // Draw max capacity line
+        if (maxCapacity) {
+          const yPosMax = yScale.getPixelForValue(maxCapacity);
+
+          ctx.save();
+          
+          ctx.beginPath();
+          ctx.moveTo(chart.chartArea.left, yPosMax);
+          ctx.lineTo(chart.chartArea.right, yPosMax);
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = 'rgba(255, 0, 0, 0.75)'; // Red line
+          ctx.stroke();
+          ctx.restore();
+
+          
+
+          ctx.font = '10px Arial';
+          ctx.fillStyle = 'rgba(255, 0, 0, 0.75)';
+          ctx.fillText(`Max Capacity: ${maxCapacity}`, chart.chartArea.right -90, yPosMax - 5);
+        }
+
+        // Draw result line based on input percentage
+        const inputedNumber = parseFloat(inputField.value);
+
+        if (maxCapacity && !isNaN(inputedNumber)) {
+          const resultValue = (maxCapacity * inputedNumber) / 100;
+          const yPosResult = yScale.getPixelForValue(resultValue);
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.setLineDash([5, 5]);
+          ctx.moveTo(chart.chartArea.left, yPosResult);
+          ctx.lineTo(chart.chartArea.right, yPosResult);
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = 'rgba(0, 128, 0, 0.75)'; // Green line
+          ctx.stroke();
+          ctx.restore();
+
+          ctx.setLineDash([]);
+
+          ctx.font = '10px Arial';
+          ctx.fillStyle = 'rgba(0, 128, 0, 0.75)';
+          ctx.fillText(`Result: ${resultValue.toFixed(2)}`, chart.chartArea.right -70, yPosResult - 5);
+        }
+      }
+    };
+
+    // Create a new chart instance
+    myChart = new Chart(ctx, {
+      type: 'line',
       data: chartData,
       options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
           x: {
-          ticks: {
+            ticks: {
               font: {
-              size: 5,
-              family: 'Arial'
+                size: 5,
+                family: 'Arial'
               },
               rotation: 90,
               align: 'start'
-          },
-          title: {
+            },
+            title: {
               display: true,
               text: 'Tarih'
-          }
+            },
+            grid: {
+              display: false // Disable grid lines on the y-axis
+            }
           },
           y: {
-          title: {
+            title: {
               display: true,
               text: 'Öğrenci sayısı'
-          },
-          beginAtZero: true,
-          suggestedMax: 700
+            },
+            beginAtZero: true,
+            suggestedMax: Math.max(...result[subeKey]) + 100,
+            grid: {
+              display: false // Disable grid lines on the y-axis
+            }
           }
-          
-      },
-      plugins: {
+        },
+        plugins: {
           tooltip: {
-          callbacks: {
+            callbacks: {
               label: function (context) {
-              return `${context.label}: ${context.raw}`;
+                return `${context.label}: ${context.raw}`;
               }
-          }
+            }
           },
           legend: {
-          display: true
+            display: true
           }
-      }
-      }
-  });
+        }
+      },
+      plugins: [horizontalLinePlugin] // Add custom plugin here
+    });
   };
 
+  // Update chart when button is clicked
+  const inputButton = document.querySelector('#zaman_input_button');
+  const inputField = document.querySelector('#zaman_number_input');
+
+  inputButton.addEventListener('click', () => {
+    const selectedSube = dropdown.value; // Get currently selected school
+    drawChart(selectedSube); // Redraw chart with updated input
+  });
 
   // Initial chart for the first sube
   drawChart(Object.keys(result)[0]);
@@ -130,10 +211,28 @@ const chartData = {
   // Update chart on dropdown change
   dropdown.addEventListener('change', (event) => {
     const selectedSube = event.target.value;
+    
+    // Reset input field
+    inputField.value = '';
+  
+    // Redraw chart with the new dropdown value
     drawChart(selectedSube);
+  });
+
+  inputField.addEventListener('input', (event) => {
+    let value = event.target.value;
+  
+    // Remove any existing percentage symbol
+    value = value.replace('%', '');
+  
+    // Ensure the input is a number before appending the percentage symbol
+    if (!isNaN(value) && value !== '') {
+      inputField.value = `${value}%`;
+    } else {
+      inputField.value = ''; // Clear input if invalid
+    }
   });
 })
 .catch(error => {
   console.error('Error fetching or processing data:', error);
 });
-    

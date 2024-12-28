@@ -1,6 +1,6 @@
-async function fetchSinir(query) {
+async function fetchSinir() {
   try {
-    const response = await fetch('http://localhost:5500/api/home' + query);
+    const response = await fetch('http://localhost:5500/api/home' + '?queryType=sinir');
     const data = await response.json();
 
     const number = data.data[0]['COUNT(*)'];
@@ -53,7 +53,7 @@ async function fetchDataKampanyaZaman(query,tip) {
     const labels = chartData.map(item => item.basvuru_tarihi.split('T')[0]);
     const quantity = chartData.map(item => item.adet);
 
-    const sinirValue = await fetchSinir('?queryType=sinir');
+    const sinirValue = await fetchSinir();
     if (sinirValue === null) {
       console.error("Failed to fetch sinir value");
       return;

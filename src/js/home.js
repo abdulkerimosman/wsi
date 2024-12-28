@@ -7,6 +7,8 @@ let dropdown2_2 = document.getElementById('dropdown2_2');
 let checkbox4_1 = document.getElementById('checkbox4_1');
 let checkbox4_2 = document.getElementById('checkbox4_2');
 let dropdown4_2 = document.getElementById('dropdown4_2');
+let dropdown4_2_1 = document.getElementById('dropdown4_2_1');
+let dropdowndiv = document.getElementById('dropdowndiv');
 let checkbox5_1 = document.getElementById('checkbox5_1');
 let checkbox5_2 = document.getElementById('checkbox5_2');
 let dropdown5_2 = document.getElementById('dropdown5_2');
@@ -17,6 +19,7 @@ let checkbox6_1 = document.getElementById('checkbox6_1');
 let checkbox6_2 = document.getElementById('checkbox6_2');
 let dropdown6_1 = document.getElementById('dropdown6_1');
 let dropdown6_2 = document.getElementById('dropdown6_2');
+
 
 
 
@@ -69,6 +72,8 @@ checkbox4_2.addEventListener('change',()=>{
   checkbox4_1.checked = false;
   checkbox4_2.checked = true;
   dropdown4_2.classList.remove('hidden');
+  dropdowndiv.classList.remove('hidden');
+  dropdown4_2_1.classList.remove('hidden');
   dropdown4_2.classList.add("h-6","overflow-y-auto");
   dropDownKampanya('?queryType=kampanya_ad');
   fetchDataKampanyaZaman('?queryType=kampanya_zaman_1'); 
@@ -96,7 +101,7 @@ checkbox4_2.addEventListener('change',()=>{
   
 });
 
-button.addEventListener('click', () => {
+/*button.addEventListener('click', () => {
   // Fetch the value on click
   let kampanyaDropdown = dropdown4_2.value;
   console.log('KDD',kampanyaDropdown)
@@ -115,7 +120,7 @@ button.addEventListener('click', () => {
       fetchDataKampanyaZaman('?queryType=kampanya_zaman_4');
       break;
   }
-});
+});*/
 
 
 
@@ -125,6 +130,8 @@ checkbox4_1.addEventListener('change',()=>{
   checkbox4_1.checked = true;
 
   dropdown4_2.classList.add('hidden');
+  dropdowndiv.classList.add('hidden');
+  dropdown4_2_1.classList.add('hidden');
   oran_input_div.classList.add('hidden');
   fetchDataKampanyaZaman('?queryType=kampanya_zaman_hepsi');
 

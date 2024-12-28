@@ -1,4 +1,4 @@
-const inputField = document.getElementById('number_input');
+/*const inputField = document.getElementById('number_input');
 
 inputField.addEventListener('input', () => {
   let value = inputField.value;
@@ -28,4 +28,4 @@ inputField.addEventListener('blur', () => {
   if (inputField.value.trim() !== '' && !inputField.value.includes('%')) {
     inputField.value = `${inputField.value}%`;
   }
-});
+});*/
