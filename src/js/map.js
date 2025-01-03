@@ -1,4 +1,4 @@
-/*fetch('http://localhost:5500/api/map')
+fetch('http://localhost:5500/api/map')
 .then(response=> response.json())
 .then(data=> {
   const rakip = data[0];
@@ -8,7 +8,7 @@
   const map = L.map('map').setView([38.4237, 27.1428], 12);
   /*L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);*/ /*
+  }).addTo(map);*/ 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19
@@ -98,4 +98,4 @@
 
   
 })
-.catch(error=> console.error('Okul veri çekmede hata')); */
+.catch(error=> console.error('Okul veri çekmede hata')); 

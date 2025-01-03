@@ -36,7 +36,7 @@ async function dropDown(query, tip, dropdownone, dropdowntwo) {
 }
 
 
-async function dropDownKampanya (query) {
+async function dropDownKampanya (query,dropdownSelector) {
   try {
     const response = await fetch('http://localhost:5500/api/home' + query);
     const data = await response.json();
@@ -49,7 +49,7 @@ async function dropDownKampanya (query) {
       return item.kampanya_ad;
     });
 
-    const dropdown = document.querySelector('#dropdown4_2');
+    const dropdown = document.querySelector(dropdownSelector);
     dropdown.innerHTML = ''
 
     dropDowns.forEach((item) => {
@@ -65,6 +65,9 @@ async function dropDownKampanya (query) {
     console.error('Error fetching data:', error);
   }
 } 
+
+
+
 async function dropDownBolum (query) {
   try {
     const response = await fetch('http://localhost:5500/api/home' + query);

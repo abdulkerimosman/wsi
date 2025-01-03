@@ -33,10 +33,10 @@ async function fetchDataKampanyaOrani(query) {
       data: {
         labels: labels,
         datasets: [{
-          label: 'Öğrenci Oranı',
+          label: 'Öğrenci Oranı%',
           data: ogrenci_orani,
-          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar background color
-          borderColor: 'rgba(75, 192, 192, 1)', // Bar border color
+          backgroundColor: 'rgba(75, 192, 192, 0.9)', // Bar background color
+          borderColor: 'rgba(75, 192, 192, 0.9)', // Bar border color
           borderWidth: 1 // Bar border width
         }]
       },
@@ -56,13 +56,19 @@ async function fetchDataKampanyaOrani(query) {
             title: {
               display:true,
               text: 'Kampanyalar'
+            },
+            grid: {
+              display: false // Disable grid lines on the y-axis
             }
           },
           y: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Öğrenci Oranı'
+              text: 'Öğrenci Oranı%'
+            },
+            grid: {
+              display: true // Disable grid lines on the y-axis
             },
             min: 0,
             suggestedMax: 15,

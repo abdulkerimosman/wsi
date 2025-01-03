@@ -41,7 +41,7 @@ async function fetchDataDoluluk(query, tip) {
     ];
 
     const chartsDiv = document.createElement('div');
-    chartsDiv.classList.add('flex', 'justify-evenly', 'gap-4', 'mt-4','h-36'); // Tailwind styles for flex layout
+    chartsDiv.classList.add('flex', 'justify-evenly', 'gap-4', 'mt-0','h-36'); // Tailwind styles for flex layout
 
     const legendContainer = document.createElement('div');
     legendContainer.classList.add('flex', 'justify-center', 'mb-4'); // Styling for the legend
@@ -49,7 +49,7 @@ async function fetchDataDoluluk(query, tip) {
     const legendItem1 = document.createElement('div');
     legendItem1.classList.add('flex', 'items-center', 'mr-4');
     legendItem1.innerHTML = `
-      <div class="w-5 h-5" style="background-color: rgba(54, 162, 235, 1); margin-right: 5px;"></div>
+      <div class="w-5 h-2" style="background-color: rgba(54, 162, 235, 1); margin-right: 5px;"></div>
       <span>Kullanılan Kapasite</span>
     `;
     legendContainer.appendChild(legendItem1);
@@ -57,7 +57,7 @@ async function fetchDataDoluluk(query, tip) {
     const legendItem2 = document.createElement('div');
     legendItem2.classList.add('flex', 'items-center');
     legendItem2.innerHTML = `
-      <div class="w-5 h-5" style="background-color: rgba(255, 99, 132, 1); margin-right: 5px;"></div>
+      <div class="w-5 h-2" style="background-color: rgba(255, 99, 132, 1); margin-right: 5px;"></div>
       <span>Boş Kapasite</span>
     `;
     legendContainer.appendChild(legendItem2);
@@ -113,6 +113,16 @@ async function fetchDataDoluluk(query, tip) {
             animation: {
               duration: 1000,
             },
+            hover: {
+              onHover: function (event, chartElement) {
+                if (chartElement.length) {
+                  const chartLabel = chartElement[0];
+                  // Apply a smaller font size when hovering over the chart segment
+                  chartLabel._model.labelFontSize = 2; // Change the size as needed
+                }
+              },
+            },
+            
           },
         });
   
@@ -168,12 +178,12 @@ async function fetchDataDoluluk(query, tip) {
         // Clear any existing charts or content inside the container
         chartContainer.innerHTML = '';  // This clears the chart container
         const legendContainer = document.createElement('div');
-        legendContainer.classList.add('flex', 'justify-center','mt-4'); // Styling for the legend
+        legendContainer.classList.add('flex', 'justify-center','mt-0'); // Styling for the legend
 
         const legendItem1 = document.createElement('div');
         legendItem1.classList.add('flex', 'items-center', 'mr-4');
         legendItem1.innerHTML = `
-          <div class="w-4 h-4" style="background-color: rgba(54, 162, 235, 1); margin-right: 5px;"></div>
+          <div class="w-5 h-2" style="background-color: rgba(54, 162, 235, 1); margin-right: 5px;"></div>
           <span>Kullanılan Kapasite</span>
         `;
         legendContainer.appendChild(legendItem1);
@@ -181,7 +191,7 @@ async function fetchDataDoluluk(query, tip) {
         const legendItem2 = document.createElement('div');
         legendItem2.classList.add('flex', 'items-center');
         legendItem2.innerHTML = `
-          <div class="w-4 h-4" style="background-color: rgba(255, 99, 132, 1); margin-right: 5px;"></div>
+          <div class="w-5 h-2" style="background-color: rgba(255, 99, 132, 1); margin-right: 5px;"></div>
           <span>Boş Kapasite</span>
         `;
         legendContainer.appendChild(legendItem2);
@@ -246,6 +256,16 @@ async function fetchDataDoluluk(query, tip) {
             animation: {
               duration: 1000,
             },
+            hover: {
+              onHover: function (event, chartElement) {
+                if (chartElement.length) {
+                  const chartLabel = chartElement[0];
+                  // Apply a smaller font size when hovering over the chart segment
+                  chartLabel._model.labelFontSize = 2; // Change the size as needed
+                }
+              },
+            },
+            
           },
         });
     

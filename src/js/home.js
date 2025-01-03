@@ -75,7 +75,8 @@ checkbox4_2.addEventListener('change',()=>{
   dropdowndiv.classList.remove('hidden');
   dropdown4_2_1.classList.remove('hidden');
   dropdown4_2.classList.add("h-6","overflow-y-auto");
-  dropDownKampanya('?queryType=kampanya_ad');
+  dropDownKampanya('?queryType=kampanya_ad','#dropdown4_2');
+  dropDownKampanya('?queryType=kampanya_ad','#dropdown4_2_1');
   fetchDataKampanyaZaman('?queryType=kampanya_zaman_1'); 
   oran_input_div.classList.remove('hidden');
 
@@ -98,6 +99,64 @@ checkbox4_2.addEventListener('change',()=>{
         break;
     }
   })
+
+  dropdown4_2_1.addEventListener('change', () => {
+    const kampanyaDropdown1 = dropdown4_2_1.value;
+    const kampanyaDropdown2 = dropdown4_2.value;
+  
+    if (kampanyaDropdown1 && kampanyaDropdown2) {
+      let query1, query2, label1, label2;
+  
+      switch (kampanyaDropdown1) {
+        case '1+1':
+          query1 = '?queryType=kampanya_zaman_1';
+          label1 = '1+1';
+          break;
+        case '2+1':
+          query1 = '?queryType=kampanya_zaman_2';
+          label1 = '2+1';
+          break;
+        case '3+1':
+          query1 = '?queryType=kampanya_zaman_3';
+          label1 = '3+1';
+          break;
+        case '3+2':
+          query1 = '?queryType=kampanya_zaman_4';
+          label1 = '3+2';
+          break;
+        default:
+          console.error('Invalid kampanyaDropdown1 value');
+          return;
+      }
+  
+      switch (kampanyaDropdown2) {
+        case '1+1':
+          query2 = '?queryType=kampanya_zaman_1';
+          label2 = '1+1';
+          break;
+        case '2+1':
+          query2 = '?queryType=kampanya_zaman_2';
+          label2 = '2+1';
+          break;
+        case '3+1':
+          query2 = '?queryType=kampanya_zaman_3';
+          label2 = '3+1';
+          break;
+        case '3+2':
+          query2 = '?queryType=kampanya_zaman_4';
+          label2 = '3+2';
+          break;
+        default:
+          console.error('Invalid kampanyaDropdown2 value');
+          return;
+      }
+  
+      fetchDataKampanyaZamanKarsilastir(query1, query2, label1, label2);
+    } else {
+      console.error('Both dropdowns must have a value');
+    }
+  });
+   
   
 });
 

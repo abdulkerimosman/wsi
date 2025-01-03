@@ -41,8 +41,8 @@ async function fetchDataOneCikan(query,konum) {
         datasets: [{
           label: 'Puan', // Dataset label
           data: scores, // Y-axis data
-          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar background color
-          borderColor: 'rgba(75, 192, 192, 1)', // Bar border color
+          backgroundColor: 'rgba(75, 192, 192, 0.9)', // Bar background color
+          borderColor: 'rgba(75, 192, 192, 0.9)', // Bar border color
           borderWidth: 1 // Bar border width
         }]
       },
@@ -62,6 +62,9 @@ async function fetchDataOneCikan(query,konum) {
             title: {
               display: true,
               text: () => (konum === 'ilce' ? 'İlçe' : 'Mahalle') // Label for the X-axis
+            },
+            grid: {
+              display: false // Disable grid lines on the y-axis
             }
           },
           y: {

@@ -13,9 +13,9 @@
 <body class="font-light text-sm bg-neutral-50">
   <!--- header -->
   <div class="flex justify-between mx-3"> 
-    <div class="flex align-middle items-center gap-1">
-      <img class="w-5" src="img/menu.svg" alt="menu">
-      <p class="text-sm text-slate-500">Home</p>
+    <div class="flex align-middle items-center gap-1"> 
+      <!--<img class="w-5" src="img/menu.svg" alt="menu">-->
+      <p class="text-sm text-slate-500">WSI - Dashboard</p>
     </div>
     <div class="flex align-middle items-center gap-1">
       <img class="w-5" src="img/chat.svg" alt="chat">
@@ -30,10 +30,10 @@
     <!-- 1st part-->    
     <div class=" grid grid-cols-1  grid-rows-[10px,1fr] h-fullgap-1 p-2 shadow-md  rounded-md  bg-white">
       <div class="flex justify-between gap-3 items-start"> 
-        <p>Potansiyel Şubeler</p>
+        <p  class="font-medium text-gray-950 opacity-80">Potansiyel Şubeler</p>
         <div>
-          <label for="checkbox1_1">İlçe <input type="checkbox" id="checkbox1_1" checked> </label> 
-          <label for="checkbox1_2">Mahalle <input type="checkbox" id="checkbox1_2"> </label>
+          <label for="checkbox1_1">İlçe <input type="checkbox" id="checkbox1_1"  checked> </label> 
+          <label for="checkbox1_2">Mahalle <input type="checkbox" id="checkbox1_2" > </label>
         </div>
       </div>
       <div id="graph1_1"></div>
@@ -42,7 +42,7 @@
     <!-- 2nd part-->
     <div class="flex flex-col justify-between p-2 shadow-md  rounded-md  bg-white" id="div2">     
       <div class="flex justify-between gap-3 items-start"> 
-        <p>Doluluk Oranı</p>
+        <p class="font-medium text-gray-950 opacity-80">Doluluk Oranı</p>
         <div class="flex flex-col items-end">
           <div>
             <label for="checkbox2_1">Bölüm <input type="checkbox" id="checkbox2_1" checked> </label> 
@@ -52,7 +52,7 @@
           <!--<select  name="doluluk_orani" id="dropdown1_1">-->
               
           </select>
-          <select  name="doluluk_orani" id="dropdown2_2" class="hidden">  
+          <select  name="doluluk_orani" id="dropdown2_2" class="hidden border">  
 
           </select>
         </div>
@@ -64,7 +64,7 @@
     <!-- 3rd part-->
     <div class="flex flex-col justify-between p-2 shadow-md  rounded-md bg-white" id="div5">     
       <div class="flex justify-between gap-3 items-start"> 
-        <p>Kampanya ile okuyan Öğrenciler</p>
+        <p class="font-medium text-gray-950 opacity-80">Kampanya ile okuyan Öğrenciler</p>
         <div class="flex flex-col items-end">
           <div>
             <label for="checkbox5_1">Hepsi <input type="checkbox" id="checkbox5_1" checked> </label> 
@@ -74,7 +74,7 @@
           <!--<select  name="doluluk_orani" id="dropdown1_1">-->
               
           </select>
-          <select  name="kampanya_bolum" id="dropdown5_2" class="hidden">  
+          <select  name="kampanya_bolum" id="dropdown5_2" class="hidden border">  
 
           </select>
         </div>
@@ -89,6 +89,7 @@
     <!-- 4th part-->
     
     <div class="flex flex-col h-[260px] w-full p-2 shadow-md  rounded-md bg-white ">
+      <p class="font-medium text-gray-950 opacity-80">Harita</p>
       <div class="flex justify-center items-start gap-2">
         <label for="checkbox3_2">Rakipler <input type="checkbox" id="checkbox3_2" checked> </label> 
         <label for="checkbox3_3">Şubelerim <input type="checkbox" id="checkbox3_3" checked> </label> 
@@ -100,11 +101,8 @@
     <!-- 5th part-->
     <div class="flex flex-col h-[260px] justify-between p-2 shadow-md  rounded-md  bg-white " id="div6">     
       <div class="flex justify-between gap-3 items-start"> 
-        <p>Doluluk Zamanla</p>
-        <div class="flex items-start" id="zaman_input_div">
-          <input class="border w-7" type="type" id="zaman_number_input">
-          <button class="bg-slate-100" id="zaman_input_button"><img src="img/left-arrow.png" class="rotate-180 w-[22px] " id="oran_input" alt=""></button>
-        </div>
+        <p class="font-medium text-gray-950 opacity-80">Doluluk Zamanla</p>
+
         <div class="flex flex-col items-end">
           <!--<div>
             <label for="checkbox6_1">Bölüm <input type="checkbox" id="checkbox6_1" checked> </label> 
@@ -114,13 +112,20 @@
           <!--<select  name="doluluk_orani" id="dropdown6_1">
               
           </select>-->
-          <select class="w-28"  name="doluluk_orani" id="dropdown6_2" >  
+          <select class="w-full border"  name="doluluk_orani" id="dropdown6_2" >  
 
           </select>
         </div>
         
       </div>
-      <div class="w-full" id="graph6_1"></div>
+      <div class="flex justify-center mt-2">
+        <p class="mr-4">Değer giriniz:</p>
+        <div class="flex items-start" id="zaman_input_div">
+          <input class="border w-7" type="type" id="zaman_number_input">
+          <button class="bg-slate-100" id="zaman_input_button"><img src="img/left-arrow.png" class="rotate-180 w-[22px] " id="oran_input" alt=""></button>
+        </div>         
+      </div>
+      <div class="w-full h-44" id="graph6_1"></div>
       <p id="text_deneme"></p>
     </div>
     
@@ -129,7 +134,7 @@
     <!-- 6th part-->
     <div class="flex flex-col h-[260px] justify-between p-2 shadow-md  rounded-md bg-white " id="div4">     
       <div class="flex justify-between gap-3 items-start"> 
-        <p>Kampanya Zamanla</p>
+        <p class="font-medium text-gray-950 opacity-80">Kampanya Zamanla</p>
         <div class="flex items-end mt-5 hidden" id="oran_input_div">
           <!--<input class="border w-1" type="type" id="number_input">
           <button class="bg-slate-100" id="oran_input_button"><img src="img/left-arrow.png" class="rotate-180 w-[22px] " id="oran_input" alt=""></button>-->
@@ -151,17 +156,18 @@
       </div>
       <div class="flex justify-evenly hidden" id="dropdowndiv">
         <div class="flex">
-          <p>Kiyaslama:</p>
-          <select  name="kampanya_zamanla_2" id="dropdown4_2_1" class="hidden">  
+          <p>Seçilen Kampanya:</p>
+          <select  name="kampanya_zamanla" id="dropdown4_2" class="hidden border">  
       
           </select>
         </div>
         <div class="flex">
-          <p>Seçilen Kampanya:</p>
-          <select  name="kampanya_zamanla" id="dropdown4_2" class="hidden">  
+          <p>Kiyaslama:</p>
+          <select  name="kampanya_zamanla_2" id="dropdown4_2_1" class="hidden border">  
       
           </select>
         </div>
+        
       </div>
       <div class="h-48" id="graph4_1"></div>
     </div>   
@@ -173,6 +179,7 @@
 <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/dropdown.js"></script>
 <script src="js/one_cikan.js"></script>

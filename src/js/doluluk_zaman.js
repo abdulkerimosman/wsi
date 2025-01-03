@@ -105,15 +105,15 @@ Promise.all([
           ctx.moveTo(chart.chartArea.left, yPosMax);
           ctx.lineTo(chart.chartArea.right, yPosMax);
           ctx.lineWidth = 1;
-          ctx.strokeStyle = 'rgba(255, 0, 0, 0.75)'; // Red line
+          ctx.strokeStyle = 'rgba(255, 0, 0, 0.95)'; // Red line
           ctx.stroke();
           ctx.restore();
 
           
 
           ctx.font = '10px Arial';
-          ctx.fillStyle = 'rgba(255, 0, 0, 0.75)';
-          ctx.fillText(`Max Capacity: ${maxCapacity}`, chart.chartArea.right -90, yPosMax - 5);
+          ctx.fillStyle = 'rgba(255, 0, 0, 0.95)';
+          ctx.fillText(`Max Kapasite: ${maxCapacity}`, chart.chartArea.right -90, yPosMax - 5);
         }
 
         // Draw result line based on input percentage
@@ -129,15 +129,15 @@ Promise.all([
           ctx.moveTo(chart.chartArea.left, yPosResult);
           ctx.lineTo(chart.chartArea.right, yPosResult);
           ctx.lineWidth = 1;
-          ctx.strokeStyle = 'rgba(0, 128, 0, 0.75)'; // Green line
+          ctx.strokeStyle = 'rgba(0, 128, 0, 0.95)'; // Green line
           ctx.stroke();
           ctx.restore();
 
           ctx.setLineDash([]);
 
           ctx.font = '10px Arial';
-          ctx.fillStyle = 'rgba(0, 128, 0, 0.75)';
-          ctx.fillText(`Result: ${resultValue.toFixed(2)}`, chart.chartArea.right -70, yPosResult - 5);
+          ctx.fillStyle = 'rgba(0, 128, 0, 0.95)';
+          ctx.fillText(`Sonuç: ${resultValue.toFixed(0)}`, chart.chartArea.right -57, yPosResult - 5);
         }
       }
     };
@@ -156,8 +156,8 @@ Promise.all([
                 size: 5,
                 family: 'Arial'
               },
-              rotation: 90,
-              align: 'start'
+              rotation: 0,
+              align: 'center'
             },
             title: {
               display: true,
