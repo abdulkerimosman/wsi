@@ -41,9 +41,6 @@ checkbox1_1.addEventListener('change',()=>{
 
 
 fetchDataDoluluk('?queryType=doluluk_orani_bolumler','bolum_ad');
-//dropDown('?queryType=doluluk_orani_bolumler','bolum_ad');
-
-console.log('adasdas:',dropdown2_2)
 
 checkbox2_2.addEventListener('change',()=>{
   checkbox2_1.checked = false;
@@ -65,7 +62,7 @@ checkbox2_1.addEventListener('change',()=>{
 
 });
 
-fetchSinir()
+
 fetchDataKampanyaZaman('?queryType=kampanya_zaman_hepsi')
 
 checkbox4_2.addEventListener('change',()=>{
@@ -82,7 +79,6 @@ checkbox4_2.addEventListener('change',()=>{
 
   dropdown4_2.addEventListener('change',()=>{
     let kampanyaDropdown = dropdown4_2.value;
-    console.log('KDD',kampanyaDropdown)
 
     switch (kampanyaDropdown) {
       case '1+1':
@@ -160,30 +156,10 @@ checkbox4_2.addEventListener('change',()=>{
   
 });
 
-/*button.addEventListener('click', () => {
-  // Fetch the value on click
-  let kampanyaDropdown = dropdown4_2.value;
-  console.log('KDD',kampanyaDropdown)
-
-  switch (kampanyaDropdown) {
-    case '1+1':
-      fetchDataKampanyaZaman('?queryType=kampanya_zaman_1');
-      break;
-    case '2+1':
-      fetchDataKampanyaZaman('?queryType=kampanya_zaman_2');
-      break;
-    case '3+1':
-      fetchDataKampanyaZaman('?queryType=kampanya_zaman_3');
-      break;
-    case '3+2':
-      fetchDataKampanyaZaman('?queryType=kampanya_zaman_4');
-      break;
-  }
-});*/
 
 
 
-``
+
 checkbox4_1.addEventListener('change',()=>{
   checkbox4_2.checked = false;
   checkbox4_1.checked = true;
@@ -207,7 +183,6 @@ checkbox5_2.addEventListener('change',()=>{
 
   dropdown5_2.addEventListener('change',()=>{
     let kampanyaDropdown = dropdown5_2.value;
-    //console.log('KDD',kampanyaDropdown)
 
     switch (kampanyaDropdown) {
       case 'İngiliz Okulu':
@@ -226,7 +201,7 @@ checkbox5_2.addEventListener('change',()=>{
 
 
 
-``
+
 checkbox5_1.addEventListener('change',()=>{
   checkbox5_2.checked = false;
   checkbox5_1.checked = true;

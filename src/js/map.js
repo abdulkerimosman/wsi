@@ -4,16 +4,11 @@ fetch('http://localhost:5500/api/map')
   const rakip = data[0];
   const sube =data[1];
   const potansiyel = data[2];
-  //console.log('Okullar:',okullar )
-  const map = L.map('map').setView([38.4237, 27.1428], 12);
-  /*L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);*/ 
+  const map = L.map('map').setView([38.4237, 27.1428], 12); 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19
   }).addTo(map);
-  //console.log('Okullar',okullar)
 
   const customIcon1 = L.icon({
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png', // Replace with your image

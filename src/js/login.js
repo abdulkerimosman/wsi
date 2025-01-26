@@ -20,7 +20,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
     
 
     if (response.ok) {
-      alert('Giriş Başarılı!');
+      console.log('Giriş Başarılı!'); 
       window.location.href = '../src/index.html';
     } else if (response.status === 401){
       alert('Giriş başarısız, tekrar deneyin');

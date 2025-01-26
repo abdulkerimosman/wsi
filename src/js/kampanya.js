@@ -1,28 +1,3 @@
-async function fetchSinir() {
-  try {
-    const response = await fetch('http://localhost:5500/api/home' + '?queryType=sinir');
-    const data = await response.json();
-
-    const number = data.data[0]['COUNT(*)'];
-    console.log('Leeededed', number);
-
-    
-    const inputField = document.querySelector('#number_input'); // Correct selector
-    const inputedNumber = parseFloat(inputField.value);
-
-    const result = (number * inputedNumber) / 100;
-      console.log('Calculated Result:', result);
-      return result
-
-    
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-}
-
-
-
-
 async function fetchDataKampanyaZaman(query,tip) {
   try {
     const response = await fetch('http://localhost:5500/api/home'+query);

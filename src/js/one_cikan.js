@@ -2,7 +2,6 @@ async function fetchDataOneCikan(query,konum) {
   try{
     const response = await fetch('http://localhost:5500/api/home'+query);
     const data = await response.json();
-    //return data;
     console.log('Fetching data with query:', query, 'and konum:', konum);
 
     if (!data || !data.data || !Array.isArray(data.data[0])) {
