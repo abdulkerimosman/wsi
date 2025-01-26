@@ -1,4 +1,4 @@
-const { login,home,map } = require('../controller/controller');
+const { login,home,map } = require('../src/controller/controller');
 const express = require('express');
 const router = express.Router();
 require('dotenv/config');
