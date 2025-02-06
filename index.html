@@ -1,0 +1,169 @@
+<!doctype html>
+<html> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <title>Home</title>
+</head>
+<body class="font-light text-sm bg-neutral-50">
+  <!--- header -->
+  <div class="flex justify-between mx-3"> 
+    <div class="flex align-middle items-center gap-1"> 
+      <p class="text-sm text-slate-500">WSI - Dashboard</p>
+    </div>
+    <div class="flex align-middle items-center gap-1">
+      <img class="w-5" src="img/chat.svg" alt="chat">
+      <img class="w-5" src="img/bell.svg" alt="menu">
+      <p class="text-sm text-slate-500">Mehmet Can</p>
+      <img class="w-7" class="w-8" src="img/user-image.jpg" alt="user-image">
+    </div>
+  </div>
+
+  
+  <div class="grid grid-cols-3 grid-rows-2 gap-2 h-[500px] w-[1200px] m-2 mt-1">
+    <!-- 1st part-->    
+    <div class=" grid grid-cols-1  grid-rows-[10px,1fr] h-fullgap-1 p-2 shadow-md  rounded-md  bg-white">
+      <div class="flex justify-between gap-3 items-start"> 
+        <p  class="font-medium text-gray-950 opacity-80">Potansiyel Şubeler</p>
+        <div>
+          <label for="checkbox1_1">İlçe <input type="checkbox" id="checkbox1_1"  checked> </label> 
+          <label for="checkbox1_2">Mahalle <input type="checkbox" id="checkbox1_2" > </label>
+        </div>
+      </div>
+      <div id="graph1_1"></div>
+    </div>
+
+    <!-- 2nd part-->
+    <div class="flex flex-col justify-between p-2 shadow-md  rounded-md  bg-white" id="div2">     
+      <div class="flex justify-between gap-3 items-start"> 
+        <p class="font-medium text-gray-950 opacity-80">Doluluk Oranı</p>
+        <div class="flex flex-col items-end">
+          <div>
+            <label for="checkbox2_1">Bölüm <input type="checkbox" id="checkbox2_1" checked> </label> 
+            <label for="checkbox2_2">Şube <input type="checkbox" id="checkbox2_2"> </label>
+          </div>
+          
+          <select  name="doluluk_orani" id="dropdown2_2" class="hidden border">  
+
+          </select>
+        </div>
+        
+      </div>
+      <div class="w-36" id="graph2_1"></div>
+    </div>
+
+    <!-- 3rd part-->
+    <div class="flex flex-col justify-between p-2 shadow-md  rounded-md bg-white" id="div5">     
+      <div class="flex justify-between gap-3 items-start"> 
+        <p class="font-medium text-gray-950 opacity-80">Kampanya ile okuyan Öğrenciler</p>
+        <div class="flex flex-col items-end">
+          <div>
+            <label for="checkbox5_1">Hepsi <input type="checkbox" id="checkbox5_1" checked> </label> 
+            <label for="checkbox5_2">Bölümler <input type="checkbox" id="checkbox5_2"> </label>
+          </div>
+
+          <select  name="kampanya_bolum" id="dropdown5_2" class="hidden border">  
+
+          </select>
+        </div>
+               
+      </div>
+      <div class="h-48" id="graph5_1"></div>
+    </div>
+     
+    
+         
+    
+    <!-- 4th part-->
+    
+    <div class="flex flex-col h-[260px] w-full p-2 shadow-md  rounded-md bg-white ">
+      <p class="font-medium text-gray-950 opacity-80">Harita</p>
+      <div class="flex justify-center items-start gap-2">
+        <label for="checkbox3_2">Rakipler <input type="checkbox" id="checkbox3_2" checked> </label> 
+        <label for="checkbox3_3">Şubelerim <input type="checkbox" id="checkbox3_3" checked> </label> 
+        <label for="checkbox3_4">Potansiyel Şubeler <input type="checkbox" id="checkbox3_4" checked> </label> 
+      </div>
+      <div class="flex-1 w-full rounded-lg" id="map"></div>
+    </div> 
+
+    <!-- 5th part-->
+    <div class="flex flex-col h-[260px] justify-between p-2 shadow-md  rounded-md  bg-white " id="div6">     
+      <div class="flex justify-between gap-3 items-start"> 
+        <p class="font-medium text-gray-950 opacity-80">Doluluk Zamanla</p>
+
+        <div class="flex flex-col items-end">
+          
+          <select class="w-full border"  name="doluluk_orani" id="dropdown6_2" >  
+
+          </select>
+        </div>
+        
+      </div>
+      <div class="flex justify-center mt-2">
+        <p class="mr-4">Değer giriniz:</p>
+        <div class="flex items-start" id="zaman_input_div">
+          <input class="border w-7" type="type" id="zaman_number_input">
+          <button class="bg-slate-100" id="zaman_input_button"><img src="img/left-arrow.png" class="rotate-180 w-[22px] " id="oran_input" alt=""></button>
+        </div>         
+      </div>
+      <div class="w-full h-44" id="graph6_1"></div>
+      <p id="text_deneme"></p>
+    </div>
+    
+    
+
+    <!-- 6th part-->
+    <div class="flex flex-col h-[260px] justify-between p-2 shadow-md  rounded-md bg-white " id="div4">     
+      <div class="flex justify-between gap-3 items-start"> 
+        <p class="font-medium text-gray-950 opacity-80">Kampanya Zamanla</p>
+        <div class="flex items-end mt-5 hidden" id="oran_input_div">
+          
+        </div>
+        <div class="flex flex-col items-end">
+          <div>
+            <label for="checkbox4_1">Hepsi <input type="checkbox" id="checkbox4_1" checked> </label> 
+            <label for="checkbox4_2">Bireysel <input type="checkbox" id="checkbox4_2"> </label>
+          </div>
+           
+          
+        </div>
+               
+      </div>
+      <div class="flex justify-evenly hidden" id="dropdowndiv">
+        <div class="flex">
+          <p>Seçilen Kampanya:</p>
+          <select  name="kampanya_zamanla" id="dropdown4_2" class="hidden border">  
+      
+          </select>
+        </div>
+        <div class="flex">
+          <p>Kiyaslama:</p>
+          <select  name="kampanya_zamanla_2" id="dropdown4_2_1" class="hidden border">  
+      
+          </select>
+        </div>
+        
+      </div>
+      <div class="h-48" id="graph4_1"></div>
+    </div>   
+    
+  </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/dropdown.js"></script>
+<script src="js/one_cikan.js"></script>
+<script src="js/doluluk_oran.js"></script>
+<script src="js/map.js"></script>
+<script src="js/kampanya.js"></script>
+<script src="js/kampanya_orani.js"></script>
+<script src="js/doluluk_zaman.js"></script>
+<script src="js/home.js"></script>
+<script src="js/details.js"></script>
+</html>  
